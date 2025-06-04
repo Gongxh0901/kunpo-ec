@@ -1,46 +1,46 @@
 {
-    "name": "kunpocc",
-    "version": "0.0.1",
+    "name": "kunpocc-ec",
+    "version": "0.0.2",
     "description": "基于creator的ec库",
-    "main": "./dist/kunpo-ec.cjs",
-    "module": "./dist/kunpo-ec.mjs",
-    "types": "./dist/kunpo-ec.d.ts",
+    "main": "./dist/kunpocc-ec.cjs",
+    "module": "./dist/kunpocc-ec.mjs",
+    "types": "./dist/kunpocc-ec.d.ts",
     "exports": {
         ".": {
-            "require": "./dist/kunpo-ec.cjs",
-            "import": "./dist/kunpo-ec.mjs",
-            "types": "./dist/kunpo-ec.d.ts",
-            "default": "./dist/kunpo-ec.cjs"
+            "require": "./dist/kunpocc-ec.cjs",
+            "import": "./dist/kunpocc-ec.mjs",
+            "types": "./dist/kunpocc-ec.d.ts",
+            "default": "./dist/kunpocc-ec.cjs"
         },
         "./min": {
-            "require": "./dist/kunpo-ec.min.cjs",
-            "import": "./dist/kunpo-ec.min.mjs"
+            "require": "./dist/kunpocc-ec.min.cjs",
+            "import": "./dist/kunpocc-ec.min.mjs"
         }
     },
     "scripts": {
         "clean": "rm -rf dist",
         "build": "npm run clean && rollup -c rollup.config.mjs",
-        "copy": "cp -r dist/* ../KunpoDemo/node_modules/kunpo-ec/dist/",
-        "build:all": "npm run build"
+        "copy": "cp -r dist/* ../KunpoDemo/node_modules/kunpocc-ec/dist/",
+        "build:all": "npm run build && npm run copy"
     },
     "files": [
-        "dist/kunpo-ec.cjs",
-        "dist/kunpo-ec.mjs",
-        "dist/kunpo-ec.min.cjs",
-        "dist/kunpo-ec.min.mjs",
-        "dist/kunpo-ec.d.ts"
+        "dist/kunpocc-ec.cjs",
+        "dist/kunpocc-ec.mjs",
+        "dist/kunpocc-ec.min.cjs",
+        "dist/kunpocc-ec.min.mjs",
+        "dist/kunpocc-ec.d.ts"
     ],
     "author": "gongxh",
     "license": "ISC",
     "repository": {
         "type": "gitlab",
-        "url": "https://github.com/Gongxh0901/kunpo-ec"
+        "url": "https://github.com/Gongxh0901/kunpocc-ec"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
     },
     "dependencies": {
-        "fairygui-cc": "^1.2.2"
+        "kunpocc-assets": "^0.0.1"
     },
     "devDependencies": {
         "@cocos/creator-types": "^3.8.0",

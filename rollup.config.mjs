@@ -5,16 +5,16 @@ import dts from 'rollup-plugin-dts';
 export default [
     {
         // 生成未压缩的 JS 文件
-        input: 'src/kunpo-ec.ts',
+        input: 'src/kunpocc-ec.ts',
         external: ['cc', 'fairygui-cc'],
         output: [
             {
-                file: 'dist/kunpo-ec.mjs',
+                file: 'dist/kunpocc-ec.mjs',
                 format: 'esm',
                 name: 'kunpocc'
             },
             {
-                file: 'dist/kunpo-ec.cjs',
+                file: 'dist/kunpocc-ec.cjs',
                 format: 'cjs',
                 name: 'kunpocc'
             }
@@ -38,16 +38,16 @@ export default [
     },
     {
         // 生成压缩的 JS 文件
-        input: 'src/kunpo-ec.ts',
+        input: 'src/kunpocc-ec.ts',
         external: ['cc', 'fairygui-cc'],
         output: [
             {
-                file: 'dist/kunpo-ec.min.mjs',
+                file: 'dist/kunpocc-ec.min.mjs',
                 format: 'esm',
                 name: 'kunpocc'
             },
             {
-                file: 'dist/kunpo-ec.min.cjs',
+                file: 'dist/kunpocc-ec.min.cjs',
                 format: 'cjs',
                 name: 'kunpocc'
             }
@@ -72,9 +72,9 @@ export default [
     },
     {
         // 生成声明文件的配置
-        input: 'src/kunpo-ec.ts',
+        input: 'src/kunpocc-ec.ts',
         output: {
-            file: 'dist/kunpo-ec.d.ts',
+            file: 'dist/kunpocc-ec.d.ts',
             format: 'es'
         },
         plugins: [dts({

@@ -1,5 +1,4 @@
 import { color, size, v2, v3 } from "cc";
-import { warn } from "console";
 import { Component } from "./Component";
 import { ComponentPool } from "./ComponentPool";
 import { _ecdecorator } from "./ECDecorator";
@@ -37,7 +36,7 @@ export class ECDataHelper {
         for (const property in data) {
             let propInfo = info.props[property];
             if (!propInfo) {
-                warn(`组件 ${component.name} 属性 ${property} 未注册`);
+                console.warn(`组件 ${component.name} 属性 ${property} 未注册`);
                 continue;
             }
             let value = data[property];
