@@ -1,0 +1,56 @@
+{
+    "name": "kunpocc",
+    "version": "0.0.1",
+    "description": "基于creator的ec库",
+    "main": "./dist/kunpo-ec.cjs",
+    "module": "./dist/kunpo-ec.mjs",
+    "types": "./dist/kunpo-ec.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/kunpo-ec.cjs",
+            "import": "./dist/kunpo-ec.mjs",
+            "types": "./dist/kunpo-ec.d.ts",
+            "default": "./dist/kunpo-ec.cjs"
+        },
+        "./min": {
+            "require": "./dist/kunpo-ec.min.cjs",
+            "import": "./dist/kunpo-ec.min.mjs"
+        }
+    },
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "npm run clean && rollup -c rollup.config.mjs",
+        "copy": "cp -r dist/* ../KunpoDemo/node_modules/kunpo-ec/dist/",
+        "build:all": "npm run build"
+    },
+    "files": [
+        "dist/kunpo-ec.cjs",
+        "dist/kunpo-ec.mjs",
+        "dist/kunpo-ec.min.cjs",
+        "dist/kunpo-ec.min.mjs",
+        "dist/kunpo-ec.d.ts"
+    ],
+    "author": "gongxh",
+    "license": "ISC",
+    "repository": {
+        "type": "gitlab",
+        "url": "https://github.com/Gongxh0901/kunpo-ec"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    },
+    "dependencies": {
+        "fairygui-cc": "^1.2.2"
+    },
+    "devDependencies": {
+        "@cocos/creator-types": "^3.8.0",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^12.1.2",
+        "@types/lodash": "^4.17.13",
+        "@types/node": "^22.10.2",
+        "rollup": "^4.28.1",
+        "rollup-plugin-dts": "^6.1.1",
+        "ts-node": "^10.9.2",
+        "tslib": "^2.6.2"
+    }
+}
