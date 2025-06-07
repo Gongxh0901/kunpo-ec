@@ -1,6 +1,6 @@
 {
     "name": "kunpocc-ec",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "基于creator的ec库",
     "main": "./dist/kunpocc-ec.cjs",
     "module": "./dist/kunpocc-ec.mjs",
