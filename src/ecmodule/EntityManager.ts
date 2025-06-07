@@ -1,4 +1,4 @@
-import { EventManager } from "../event/EventManager";
+import { EventManager } from "kunpocc-event";
 import { Component } from "./Component";
 import { ComponentManager } from "./ComponentManager";
 import { ComponentPool } from "./ComponentPool";
@@ -181,7 +181,7 @@ export class EntityManager {
             return;
         }
         this._recycleEntity(entity);
-        this._eventManager && this._eventManager.removeList(entity);
+        this._eventManager && this._eventManager.removeByTarget(entity);
     }
 
     /**
@@ -203,13 +203,13 @@ export class EntityManager {
         // 占位
         this._entityPool.push(null);
         this._entityVersion.push(1);
-        this._eventManager && this._eventManager.destroyAll();
+        this._eventManager && this._eventManager.clearAll();
 
         // 销毁单例实体组件
         if (!ignoreSingletonEntity) {
             this.insEntity._destroy();
             this.insActive = false;
-            this._insEventManager && this._insEventManager.destroyAll();
+            this._insEventManager && this._insEventManager.clearAll();
         }
     }
 
@@ -335,14 +335,22 @@ export class EntityManager {
      * @param once 是否单次事件
      * @internal
      */
-    public _addEvent(eventName: string, callback: (...args: any[]) => void, entity: Entity, once: boolean = false): void {
+    public _addEvent(eventName: string, callback: (...args: any[]) => void, entity: Entity, once: boolean = false): number {
         if (entity == this.insEntity) {
             this._insEventManager = this._insEventManager ? this._insEventManager : new EventManager();
-            this._insEventManager._addEvent(eventName, callback, once, entity);
+            if (once) {
+                return this._insEventManager.addOnce(eventName, callback, entity);
+            } else {
+                return this._insEventManager.add(eventName, callback, entity);
+            }
             return;
         }
         this._eventManager = this._eventManager ? this._eventManager : new EventManager();
-        this._eventManager._addEvent(eventName, callback, once, entity);
+        if (once) {
+            return this._eventManager.addOnce(eventName, callback, entity);
+        } else {
+            return this._eventManager.add(eventName, callback, entity);
+        }
     }
 
     /**
@@ -367,12 +375,12 @@ export class EntityManager {
      * @param callback 事件回调
      * @internal
      */
-    public _removeEvent(eventName: string, entity: Entity, callback?: (...args: any[]) => void): void {
+    public _removeEvent(eventId: number, entity: Entity): void {
         if (entity == this.insEntity) {
-            this._insEventManager && this._insEventManager.remove(eventName, callback, entity);
+            this._insEventManager && this._insEventManager.remove(eventId);
             return;
         }
-        this._eventManager && this._eventManager.remove(eventName, callback, entity);
+        this._eventManager && this._eventManager.remove(eventId);
     }
 
     /**

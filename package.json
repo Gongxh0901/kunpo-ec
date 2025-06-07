@@ -1,6 +1,6 @@
 {
     "name": "kunpocc-ec",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "基于creator的ec库",
     "main": "./dist/kunpocc-ec.cjs",
     "module": "./dist/kunpocc-ec.mjs",
@@ -40,7 +40,8 @@
         "registry": "https://registry.npmjs.org/"
     },
     "dependencies": {
-        "kunpocc-assets": "^0.0.1"
+        "kunpocc-assets": "^0.0.1",
+        "kunpocc-event": "^0.0.2"
     },
     "devDependencies": {
         "@cocos/creator-types": "^3.8.0",

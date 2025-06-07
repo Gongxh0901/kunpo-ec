@@ -188,8 +188,11 @@ export class Entity {
      * @param entityId 实体ID
      * @param once 是否单次监听
      */
-    public addEvent(eventName: string, callback: (...args: any[]) => void, once: boolean = false): void {
-        this.entityManager && this.entityManager._addEvent(eventName, callback, this, once);
+    public addEvent(eventName: string, callback: (...args: any[]) => void, once: boolean = false): number {
+        if (this.entityManager) {
+            return this.entityManager._addEvent(eventName, callback, this, once);
+        }
+        return 0;
     }
 
     /**
@@ -202,8 +205,8 @@ export class Entity {
         this.entityManager && this.entityManager._sendEvent(eventName, this, ...args);
     }
 
-    public removeListener(eventName: string, callback?: (...args: any[]) => void): void {
-        this.entityManager && this.entityManager._removeEvent(eventName, this, callback);
+    public removeListener(eventId: number): void {
+        this.entityManager && this.entityManager._removeEvent(eventId, this);
     }
 
     /**
