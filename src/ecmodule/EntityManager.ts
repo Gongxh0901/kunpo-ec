@@ -343,7 +343,6 @@ export class EntityManager {
             } else {
                 return this._insEventManager.add(eventName, callback, entity);
             }
-            return;
         }
         this._eventManager = this._eventManager ? this._eventManager : new EventManager();
         if (once) {
@@ -381,6 +380,33 @@ export class EntityManager {
             return;
         }
         this._eventManager && this._eventManager.remove(eventId);
+    }
+
+    /**
+     * 通过事件名移除特定实体上的消息监听 (内部使用)
+     * @param eventName 事件名
+     * @param entity 实体
+     * @internal
+     */
+    public _removeEventByName(eventName: string, entity: Entity): void {
+        if (entity == this.insEntity) {
+            this._insEventManager && this._insEventManager.removeByNameAndTarget(eventName, entity);
+            return;
+        }
+        this._eventManager && this._eventManager.removeByNameAndTarget(eventName, entity);
+    }
+
+    /**
+     * 移除实体上的所有消息监听 (内部使用)
+     * @param entity 实体
+     * @internal
+     */
+    public _removeAllEvent(entity: Entity): void {
+        if (entity == this.insEntity) {
+            this._insEventManager && this._insEventManager.removeByTarget(entity);
+            return;
+        }
+        this._eventManager && this._eventManager.removeByTarget(entity);
     }
 
     /**

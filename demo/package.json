@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "kunpocc-assets": "^0.0.1",
-    "kunpocc-ec": "^0.0.2",
+    "kunpocc-ec": "^0.0.3",
     "ts-node": "^10.9.2"
   }
 }

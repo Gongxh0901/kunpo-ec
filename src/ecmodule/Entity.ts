@@ -201,12 +201,27 @@ export class Entity {
      * @param entityId 实体ID
      * @param args 发送参数
      */
-    public sendListener(eventName: string, ...args: any[]): void {
+    public sendEvent(eventName: string, ...args: any[]): void {
         this.entityManager && this.entityManager._sendEvent(eventName, this, ...args);
     }
 
-    public removeListener(eventId: number): void {
+    /**
+     * 通过事件ID移除消息监听
+     * @param eventId 事件ID
+     */
+    public removeEvent(eventId: number): void {
         this.entityManager && this.entityManager._removeEvent(eventId, this);
+    }
+
+    public removeEventByName(eventName: string): void {
+        this.entityManager && this.entityManager._removeEventByName(eventName, this);
+    }
+
+    /**
+     * 移除实体上的所有消息监听
+     */
+    public removeAllEvent(): void {
+        this.entityManager && this.entityManager._removeAllEvent(this);
     }
 
     /**
